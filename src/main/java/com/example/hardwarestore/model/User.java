@@ -15,8 +15,4 @@ public class User {
 
     @NotBlank(message = "Поле не должно быть пустым")
     private String password;
-
-    // остальные поля...
-
-    // геттеры и сеттеры
 }
