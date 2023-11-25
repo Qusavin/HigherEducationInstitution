@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить институт</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div style="padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: gray solid 1px; margin-bottom: 20px">
+    <p style="font-size: 20px; font-weight: bold; text-transform: uppercase">Регистер институтов</p>
+    <div>
+        <a th:href="@{/home}">
+            <button type="button" class="btn btn-dark">Главная страница</button>
+        </a>
+        <a th:href="@{/university/new}">
+            <button type="button" class="btn btn-dark">Добавить новый институт</button>
+        </a>
+    </div>
+</div>
+<div class="container" style="display: flex; flex-direction: column; justify-content: space-between; gap: 20px">
+    <div>
+        <h2>Добавление института</h2>
+    </div>
+
+    <form th:action="@{/university/new}" th:object="${university}" method="post">
+
+        <div class="form-group">
+            <label>Название института</label>
+            <input type="text" th:field="*{name}" class="form-control" placeholder="Введите название">
+            <p style="color: crimson" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Местоположение</label>
+            <input type="text" th:field="*{location}" class="form-control" placeholder="Введите местоположение">
+            <p style="color: crimson" th:if="${#fields.hasErrors('location')}" th:errors="*{location}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Год основания</label>
+            <input type="number" min="0" th:field="*{foundationYear}" class="form-control" placeholder="Введите год основания">
+            <p style="color: crimson" th:if="${#fields.hasErrors('foundationYear')}" th:errors="*{foundationYear}"></p>
+        </div>
+
+        <div class="form-group">
+            <label>Описание (опиционально)</label>
+            <textarea class="form-control" th:field="*{description}" placeholder="Введите описание" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Количество студентов</label>
+            <input type="number" min="0" th:field="*{totalStudents}" class="form-control" placeholder="Введите количество студентов">
+            <p style="color: crimson" th:if="${#fields.hasErrors('totalStudents')}" th:errors="*{totalStudents}"></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Добавить институт</button>
+    </form>
+</div>
+</body>
+</html>

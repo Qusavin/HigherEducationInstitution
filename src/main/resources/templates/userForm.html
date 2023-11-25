@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить товар</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div style="padding: 15px; border-bottom: gray solid 1px; margin-bottom: 20px"><p
+        style="font-size: 20px; font-weight: bold; text-transform: uppercase;">Магазин стройматериалов</p>
+</div>
+<div class="container" style="height: 50vh; display: flex; flex-direction: column; padding: 10px; max-width: 560px">
+    <p style="text-align: center; font-size: 24px; font-weight: bold">Регистрация</p>
+
+    <form th:action="@{/register}" th:object="${user}" method="post">
+
+        <div class="form-group">
+            <label for="exampleInputEmail1">Имя пользователя</label>
+            <input type="text" th:field="*{username}" class="form-control" id="exampleInputEmail1"
+                   aria-describedby="emailHelp"
+                   placeholder="Введите имя">
+            <p style="color: crimson" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+        </div>
+
+        <div class="form-group">
+            <label for="exampleInputEmail2">Пароль</label>
+            <input type="password" th:field="*{password}" class="form-control" id="exampleInputEmail2"
+                   aria-describedby="emailHelp"
+                   placeholder="Введите пароль">
+            <p style="color: crimson" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Загерестрироваться</button>
+    </form>
+</div>
+</body>
+</html>
